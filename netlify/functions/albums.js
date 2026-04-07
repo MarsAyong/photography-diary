@@ -65,7 +65,7 @@ async function getAlbums() {
       date: a.folderName,
       title: a.folderName,
       coverImage: a.images[0]?.url || '',
-      url: `/${a.folderName}/`
+      url: a.folderName
     }));
 }
 
