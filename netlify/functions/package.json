@@ -1,0 +1,9 @@
+{
+  "name": "netlify-functions",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "cloudinary": "^2.9.0",
+    "dotenv": "^17.4.1"
+  }
+}

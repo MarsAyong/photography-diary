@@ -3,21 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npx @11ty/eleventy",
-    "start": "npx @11ty/eleventy --serve",
-    "dev": "node scripts/local-api.js",
-    "upload": "node scripts/upload-to-cloudinary.js"
+    "build": "npx @11ty/eleventy"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0"
-  },
-  "dependencies": {
-    "cloudinary": "^2.9.0",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.1",
-    "express": "^4.21.0"
-  },
-  "overrides": {
-    "sharp": false
   }
 }
