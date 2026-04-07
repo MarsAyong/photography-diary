@@ -1,6 +1,6 @@
 [build]
   publish = "_site"
-  command = """npm install --ignore-scripts && npx @11ty/eleventy"""
+  command = """npm cache clean --force && npm install --verbose 2>&1 | head -100 && npx @11ty/eleventy"""
   functions = "netlify/functions"
 
 [build.environment]
