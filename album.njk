@@ -143,7 +143,7 @@
       }
 
       try {
-        const apiBase = window.location.hostname === 'localhost' ? 'http://localhost:3000' : '';
+        const apiBase = window.location.hostname === 'localhost' ? 'http://localhost:1023' : '';
         const response = await fetch(apiBase + '/.netlify/functions/album?folder=' + encodeURIComponent(folder));
         if (!response.ok) throw new Error('Failed to load');
         const data = await response.json();

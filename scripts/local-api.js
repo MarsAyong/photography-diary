@@ -113,7 +113,7 @@ app.get('/.netlify/functions/album', async (req, res) => {
   }
 });
 
-const PORT = 3000;
+const PORT = 1023;
 app.listen(PORT, () => {
   console.log(`\n🚀 Server running at http://localhost:${PORT}`);
   console.log(`📡 Albums: http://localhost:${PORT}/.netlify/functions/albums`);
