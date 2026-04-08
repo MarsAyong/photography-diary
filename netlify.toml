@@ -21,13 +21,6 @@
   to = "/album/index.html"
   status = 200
 
-[[redirects]]
-  from = "/*"
-  to = "/:splat"
-  status = 301
-  force = true
-  conditions = {Language = ["en"], Country = ["US"]}
-
 [[headers]]
   for = "/*"
   [headers.values]
