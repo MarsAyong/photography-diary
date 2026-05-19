@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title id="pageTitle">加载中... - 龚仔的摄影日记</title>
+  <title id="pageTitle">加载中... - {{ site.siteName }}</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#e07a5f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="{{ site.siteName }}">
   <style>
     :root{--bg:#0a0a0e;--card:#121218;--card-hover:#1a1a22;--text:#f0f0f2;--muted:#6b6b7a;--accent:#e07a5f;--border:#1e1e26}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -92,7 +97,7 @@
           <circle cx="19" cy="8" r="2" fill="#fff" stroke="none"/>
         </svg>
       </span>
-      <a href="/">龚仔的摄影日记</a>
+      <a href="/">{{ site.siteName }}</a>
     </h1>
   </header>
   <main class="container">
@@ -126,9 +131,10 @@
     </div>
   </div>
   <footer class="site-footer">
-    <p>© 2026 龚仔的摄影日记 | <a href="https://v.douyin.com/Hc74k9FgjPY/" target="_blank">@龚仔仔仔仔</a></p>
+    <p>{{ site.footer.html | safe }}</p>
   </footer>
   <script>
+    var SITE_NAME = '{{ site.siteName }}';
     const pathParts = window.location.pathname.split('/').filter(Boolean);
     const folder = pathParts[1] || pathParts[0] || '';
     let images = [];
@@ -154,7 +160,7 @@
         const data = await response.json();
         images = data.images || [];
         
-        document.getElementById('pageTitle').textContent = folder + ' - 龚仔的摄影日记';
+        document.getElementById('pageTitle').textContent = folder + ' - ' + SITE_NAME;
         document.getElementById('albumDate').textContent = folder;
         document.getElementById('albumCount').textContent = images.length + ' 张照片';
         

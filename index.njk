@@ -6,8 +6,13 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="canonical" href="https://gongting.fun/">
-  <title>龚仔的摄影日记</title>
+  <title>{{ site.siteName }}</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#e07a5f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="{{ site.siteName }}">
   <style>
     :root{--bg:#08080c;--card:#111116;--card-hover:#1a1a20;--text:#f5f5f7;--muted:#6b6b7a;--accent:#e07a5f;--accent-glow:rgba(224,122,95,0.15);--border:#1e1e26}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -100,13 +105,13 @@
           <circle cx="19" cy="8" r="2" fill="#fff" stroke="none"/>
         </svg>
       </span>
-      <a href="/">龚仔的摄影日记</a>
+      <a href="/">{{ site.siteName }}</a>
     </h1>
   </header>
   <main class="container">
     <section class="hero">
-      <h1>记录生活，定格美好</h1>
-      <p>用镜头捕捉每一个值得珍藏的瞬间</p>
+      <h1>{{ site.siteTitle }}</h1>
+      <p>{{ site.siteDescription }}</p>
     </section>
     <div id="loadingState" class="loading">
       <div class="loading-spinner"></div>
@@ -120,7 +125,7 @@
     <div class="pagination" id="pagination" style="display:none"></div>
   </main>
   <footer class="site-footer">
-    <p>© 2026 龚仔的摄影日记 | <a href="https://v.douyin.com/Hc74k9FgjPY/" target="_blank">@龚仔仔仔仔</a></p>
+    <p>{{ site.footer.html | safe }}</p>
   </footer>
   <script>
     const grid = document.getElementById('albumGrid');

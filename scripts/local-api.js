@@ -4,6 +4,13 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
+if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+  console.error('\n⚠️  缺少 Cloudinary 配置！');
+  console.error('   请将 .env.example 复制为 .env，并填入你的 Cloudinary 密钥。');
+  console.error('   参考: https://cloudinary.com/console\n');
+  process.exit(1);
+}
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
