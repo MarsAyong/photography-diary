@@ -136,7 +136,7 @@
   <script>
     var SITE_NAME = '{{ site.siteName }}';
     const pathParts = window.location.pathname.split('/').filter(Boolean);
-    const folder = pathParts[1] || pathParts[0] || '';
+    const folder = decodeURIComponent(pathParts[1] || pathParts[0] || '');
     let images = [];
     let currentIndex = 0;
     const grid = document.getElementById('photoGrid');
