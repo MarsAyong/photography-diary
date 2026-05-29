@@ -218,7 +218,7 @@
     var currentPage = 1;
     var totalPages = 1;
     var PER_PAGE = 9;
-    function pageFromHash(){var m=location.hash.match(/page-(\d+)/);return m?parseInt(m[1]):1}
+    function savedPage(){var p=sessionStorage.getItem('pg');return p?parseInt(p):1}
     
     async function loadAlbums() {
       loadingState.style.display = 'block';
@@ -229,7 +229,7 @@
 
       try {
         const nav = performance.getEntriesByType('navigation')[0];
-        if (nav && nav.type === 'reload') sessionStorage.removeItem('albums_data');
+        if (nav && nav.type === 'reload') { sessionStorage.removeItem('albums_data'); sessionStorage.removeItem('pg'); }
       } catch(e) {}
 
       const cached = sessionStorage.getItem('albums_data');
@@ -246,7 +246,7 @@
           } else {
             grid.style.display = 'grid';
             pagination.style.display = 'flex';
-            renderPage(pageFromHash());
+            renderPage(savedPage());
           }
           fetchAlbumsFresh();
           return;
@@ -274,7 +274,7 @@
         } else {
           grid.style.display = 'grid';
           pagination.style.display = 'flex';
-          renderPage(pageFromHash());
+          renderPage(savedPage());
         }
       } catch (error) {
         console.error('Load error:', error);
@@ -384,7 +384,7 @@
         var btn = document.createElement('button');
         btn.textContent = p;
         btn.className = p === currentPage ? 'active' : '';
-        btn.onclick = (function(page){ return function(){ currentPage = page; history.replaceState(null, '', '#page-'+page); renderPage(page); window.scrollTo({top:0, behavior:'smooth'}); }; })(p);
+        btn.onclick = (function(page){ return function(){ currentPage = page; sessionStorage.setItem('pg', page); renderPage(page); window.scrollTo({top:0, behavior:'smooth'}); }; })(p);
         pagination.appendChild(btn);
       }
     }
@@ -392,10 +392,6 @@
     // Back to top visibility
     window.addEventListener('scroll', function(){
       document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
-    });
-
-    window.addEventListener('popstate', function(){
-      if (albums.length) renderPage(pageFromHash());
     });
 
     loadAlbums();
