@@ -155,7 +155,9 @@
       .lb-exif{font-size:.7rem;gap:8px;margin-top:3px}
     }
     @media(max-width:480px){
-      .photo-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+      .photo-grid{grid-template-columns:1fr;gap:8px}
+      .pagination button{min-width:44px;height:44px}
+      .photo-exif{opacity:1}
       .back-top{bottom:60px;right:14px;width:34px;height:34px}
     }
   </style>
@@ -273,17 +275,37 @@
         return;
       }
 
+      const cacheKey = 'album_' + folder;
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        try {
+          const data = JSON.parse(cached);
+          images = data.images || [];
+          if (images.length) {
+            document.getElementById('pageTitle').textContent = folder + ' - ' + SITE_NAME;
+            document.getElementById('albumDate').textContent = folder;
+            document.getElementById('albumCount').textContent = images.length + ' 张照片';
+            totalPages = Math.max(1, Math.ceil(images.length / PER_PAGE));
+            loadingState.style.display = 'none';
+            content.style.display = 'block';
+            renderPage(1);
+          }
+        } catch(e) { sessionStorage.removeItem(cacheKey); }
+      }
+
       try {
         const apiBase = window.location.hostname === 'localhost' ? 'http://localhost:1023' : '';
         const response = await fetch(apiBase + '/.netlify/functions/album?folder=' + encodeURIComponent(folder));
         if (!response.ok) throw new Error('Failed to load');
         const data = await response.json();
-        images = data.images || [];
-        
+        if (!data.images || !data.images.length) throw new Error('empty');
+        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+        images = data.images;
+
         document.getElementById('pageTitle').textContent = folder + ' - ' + SITE_NAME;
         document.getElementById('albumDate').textContent = folder;
         document.getElementById('albumCount').textContent = images.length + ' 张照片';
-        
+
         totalPages = Math.max(1, Math.ceil(images.length / PER_PAGE));
         loadingState.style.display = 'none';
         content.style.display = 'block';
@@ -294,16 +316,18 @@
         }
       } catch (error) {
         console.error('Load error:', error);
-        loadingState.style.display = 'none';
-        errorState.querySelector('p').textContent = '加载失败';
-        errorState.style.display = 'block';
+        if (!images.length) {
+          loadingState.style.display = 'none';
+          errorState.querySelector('p').textContent = '加载失败';
+          errorState.style.display = 'block';
+        }
       }
     }
 
     function createPhotoItem(imgData, index) {
       var div = document.createElement('div');
       div.className = 'photo-item';
-      div.style.background = 'url(' + blurUrl(imgData.url) + ') center/cover no-repeat var(--card)';
+      if (window.innerWidth >= 768) div.style.background = 'url(' + blurUrl(imgData.url) + ') center/cover no-repeat var(--card)';
 
       var exifHtml = '<div class="photo-exif"><div class="exif-filename">' + imgData.filename + '</div>';
       var meta = imgData.metadata;
@@ -373,8 +397,8 @@
       document.body.style.overflow = 'hidden';
       updateLightbox();
       history.replaceState(null, '', '#photo-' + (index + 1));
-      // show keyboard hint briefly
-      if (!hintShown) {
+      // show keyboard hint briefly (desktop only)
+      if (!hintShown && window.innerWidth >= 768) {
         hintShown = true;
         var hint = document.getElementById('lb-hint');
         hint.classList.add('show');

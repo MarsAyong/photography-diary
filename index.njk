@@ -142,6 +142,8 @@
     }
     @media(max-width:520px){
       .albums{grid-template-columns:1fr;gap:20px}
+      .album{animation-delay:0s!important}
+      .pagination button{min-width:44px;height:44px}
       .hero h1{font-size:1.9rem}
       .container{padding:70px 14px 30px}
       .back-top{bottom:60px;right:14px;width:34px;height:34px}
@@ -310,7 +312,7 @@
 
         let cover = document.createElement('div');
         cover.className = 'album-cover';
-        if (coverUrl) cover.style.background = 'url(' + blurUrl(coverUrl) + ') center/cover no-repeat';
+        if (coverUrl && window.innerWidth >= 768) cover.style.background = 'url(' + blurUrl(coverUrl) + ') center/cover no-repeat var(--card)';
 
         let img = document.createElement('img');
         if (coverUrl) {
