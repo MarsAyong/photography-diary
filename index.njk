@@ -425,24 +425,7 @@
       }
     }
 
-    document.getElementById('egg-logo').addEventListener('click', function(e){ e.stopPropagation(); egg(this, 'egg-spin'); });
-    document.getElementById('egg-sitename').addEventListener('click', function(e){ e.preventDefault(); hearts(this); egg(this, 'egg-pop'); });
-    document.getElementById('egg-record').addEventListener('click', function(){ egg(this, 'egg-pop'); });
-    document.getElementById('egg-freeze').addEventListener('click', function(){ egg(this, 'egg-flash'); });
-    document.getElementById('egg-capture').addEventListener('click', function(){ egg(this, 'egg-shake'); });
-    document.getElementById('egg-name').addEventListener('click', function(){ egg(this, 'egg-pop'); });
-    document.getElementById('egg-year').addEventListener('click', function(){ overlay('Fight!'); });
-    document.getElementById('egg-moment').addEventListener('click', function(){ hearts(this); egg(this, 'egg-pop'); });
-    document.getElementById('egg-wechat').addEventListener('click', function(){
-      navigator.clipboard.writeText('GongzVirAug');
-      overlay('微信已复制 ✓');
-      egg(this, 'egg-pop');
-    });
-    document.getElementById('egg-email').addEventListener('click', function(){
-      navigator.clipboard.writeText('jogt@foxmail.com');
-      overlay('邮箱已复制 ✓');
-      egg(this, 'egg-pop');
-    });
+
   </script>
 </body>
 </html>
