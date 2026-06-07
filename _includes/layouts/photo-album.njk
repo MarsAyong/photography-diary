@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ album.date }} - 龚仔的摄影日记</title>
+  <title>{{ album.date }} - Ayong的摄影日记</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
     :root{--bg:#0b0b0f;--card:#14161d;--text:#e9e9e9;--muted:#888;--accent:#e76f51;--border:rgba(255,255,255,.08)}
@@ -96,7 +96,7 @@
     </div>
   </div>
   <footer class="site-footer">
-    <p>© 2026 龚仔的摄影日记</p>
+    <p>© 2026 Ayong的摄影日记</p>
   </footer>
   <script>
     const images = [{% for photo in album.images %}{url:'{{ photo.url }}',name:'{{ photo.filename }}'}{% if not forloop.last %},{% endif %}{% endfor %}];
