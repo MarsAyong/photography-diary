@@ -1,4 +1,4 @@
-# 龚仔的摄影日记
+# Ayong的摄影日记
 
 一个基于 Cloudinary 图床的动态相册网站，实时从 Cloudinary 加载相册和照片。
 
@@ -114,7 +114,7 @@ CLOUDINARY_API_SECRET=你的API Secret
 
 ```js
 module.exports = {
-  siteName: '龚仔的摄影日记',           // 网站名称
+  siteName: 'Ayong的摄影日记',           // 网站名称
   siteTitle: '记录生活，定格美好',        // 标题/口号
   siteDescription: '用镜头捕捉每一个值得珍藏的瞬间', // 描述
   footer: {
