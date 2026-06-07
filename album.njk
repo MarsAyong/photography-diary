@@ -635,21 +635,8 @@
     document.body.appendChild(o);
     setTimeout(function(){ o.style.transition = 'opacity .5s'; o.style.opacity = '0'; setTimeout(function(){ o.remove(); }, 500); }, duration);
   }
-  document.getElementById('egg-logo').addEventListener('click', function(e){ e.stopPropagation(); egg(this, 'egg-spin'); });
-  document.getElementById('egg-sitename').addEventListener('click', function(e){ hearts(this); egg(this, 'egg-pop'); });
-  document.getElementById('egg-name').addEventListener('click', function(){ egg(this, 'egg-pop'); });
-  document.getElementById('egg-year').addEventListener('click', function(){ overlay('Fight!'); });
-  document.getElementById('egg-moment').addEventListener('click', function(){ hearts(this); egg(this, 'egg-pop'); });
-  document.getElementById('egg-wechat').addEventListener('click', function(){
-    navigator.clipboard.writeText('GongzVirAug');
-    overlay('微信已复制 ✓');
-    egg(this, 'egg-pop');
-  });
-  document.getElementById('egg-email').addEventListener('click', function(){
-    navigator.clipboard.writeText('jogt@foxmail.com');
-    overlay('邮箱已复制 ✓');
-    egg(this, 'egg-pop');
-  });
+  
+
   </script>
 </body>
 </html>
